@@ -6,7 +6,8 @@ from unidecode import unidecode
 
 
 # Define path to dir containing PDF files to be converted to PDF/A
-filepath = 'F:/pdf_a_test/'
+filepath = 'C:/PDF2PDFA/PDF_to_PDF-A1-3/'
+
 
 def convert_pdf_to_pdfa(filepath, output):
     """Creates mirrored dir structure in dir arch/ and converts every PDF file to PDF/A 1-3"""
@@ -43,9 +44,8 @@ def convert_pdf_to_pdfa(filepath, output):
                                 '-dCompatibilityLevel=1.7', '-dPDFACompatibilityPolicy=1',
                                 '-sProcessColorModel=DeviceRGB', '-sColorConversionStrategy=UseDeviceIndependentColor',
                                 '-sOutputICCProfile=esrgb.icc', '-sDEVICE=pdfwrite',
-                                '-sOutputFile=' + outpath + '/arch_v_' + fname, path,
+                                '-sOutputFile=' + outdir + '/arch_v_' + fname, path,
                                 '-sPDFACompatibilityPolicy=1 "C:/Program Files/gs/lib/PDFA_def.ps"']
-
 
             ghostscript.Ghostscript(*ghostScriptExec)
 
