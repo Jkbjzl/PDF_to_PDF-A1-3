@@ -31,20 +31,20 @@ def convert_pdf_to_pdfa(filepath, output):
             #                    '-sPDFACompatibilityPolicy=1 "C:/Program Files/gs/lib/PDFA_def.ps"']
 
             # comment for if PDF/A-2b is unwanted, when on linux delete in command below win64c
-            ghostScriptExec = ['gswin64c', '-dPDFA=2b', '-dBATCH', '-dNOPAUSE', '-dNOOUTERSAVE',
-                               '-dCompatibilityLevel=1.7', '-dPDFACompatibilityPolicy=1',
-                               '-sProcessColorModel=DeviceRGB', '-sColorConversionStrategy=UseDeviceIndependentColor',
-                               '-sOutputICCProfile=esrgb.icc', '-sDEVICE=pdfwrite',
-                               '-sOutputFile=' + outdir + '/arch_v_' + norm_fname, path,
-                               '-sPDFACompatibilityPolicy=1 "C:\Program Files\gs\lib\PDFA_def.ps"']
+            #ghostScriptExec = ['gswin64c', '-dPDFA=2b', '-dBATCH', '-dNOPAUSE', '-dNOOUTERSAVE',
+            #                   '-dCompatibilityLevel=1.7', '-dPDFACompatibilityPolicy=1',
+            #                   '-sProcessColorModel=DeviceRGB', '-sColorConversionStrategy=UseDeviceIndependentColor',
+            #                   '-sOutputICCProfile=esrgb.icc', '-sDEVICE=pdfwrite',
+            #                   '-sOutputFile=' + outdir + '/arch_v_' + norm_fname, path,
+            #                   '-sPDFACompatibilityPolicy=1 "C:\Program Files\gs\lib\PDFA_def.ps"']
 
             # uncomment for PDF/A-3a, when on linux delete in command below win64c
-            # ghostScriptExec = ['gswin64c', '-dPDFA=3a', '-dBATCH', '-dNOPAUSE', '-dNOOUTERSAVE',
-            #                    '-dCompatibilityLevel=1.7', '-dPDFACompatibilityPolicy=1',
-            #                    '-sProcessColorModel=DeviceRGB', '-sColorConversionStrategy=UseDeviceIndependentColor',
-            #                    '-sOutputICCProfile=esrgb.icc', '-sDEVICE=pdfwrite',
-            #                    '-sOutputFile=' + outpath + '/arch_v_' + fname, path,
-            #                    '-sPDFACompatibilityPolicy=1 "C:\Program Files\gs\lib\PDFA_def.ps"']
+            ghostScriptExec = ['gswin64c', '-dPDFA=3a', '-dBATCH', '-dNOPAUSE', '-dNOOUTERSAVE',
+                                '-dCompatibilityLevel=1.7', '-dPDFACompatibilityPolicy=1',
+                                '-sProcessColorModel=DeviceRGB', '-sColorConversionStrategy=UseDeviceIndependentColor',
+                                '-sOutputICCProfile=esrgb.icc', '-sDEVICE=pdfwrite',
+                                '-sOutputFile=' + outpath + '/arch_v_' + fname, path,
+                                '-sPDFACompatibilityPolicy=1 "C:/Program Files/gs/lib/PDFA_def.ps"']
 
 
             ghostscript.Ghostscript(*ghostScriptExec)
@@ -59,12 +59,10 @@ def write_pdf_list_to_csv(output, csv_file):
             ["Conversion program: PDF_to_PDF-A1-3.py (based on https://github.com/maarty1226/PDF_to_PDF-A1-3)"])
         writer.writerow([])
 
-    for root, dirs, files in os.walk(output):
+        for root, dirs, files in os.walk(output):
             for file in files:
                 path = os.path.join(output, file)
                 writer.writerow([path])
-
-    f.close()
 
 
 if __name__ == '__main__':
